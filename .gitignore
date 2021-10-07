@@ -51,4 +51,8 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
-
+data/raw/images_test_rev1/*
+data/raw/images_train_rev1
+data/raw/galaxy-zoo-the-galaxy-challenge
+.idea/
+data/galaxy-zoo-the-galaxy-challenge.zip
