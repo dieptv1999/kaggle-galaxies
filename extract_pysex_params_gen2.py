@@ -4,7 +4,7 @@ import pysex
 import numpy as np
 
 import multiprocessing as mp
-import cPickle as pickle
+import pickle
 
 
 """
@@ -102,11 +102,11 @@ for subset in SUBSETS:
 
     pool = mp.Pool(NUM_PROCESSES)
 
-    estimated_params = pool.map(process, xrange(num_images), chunksize=100)
+    estimated_params = pool.map(process, range(num_images), chunksize=100)
     pool.close()
     pool.join()
 
-    # estimated_params = map(process, xrange(num_images)) # no mp for debugging
+    # estimated_params = map(process, range(num_images)) # no mp for debugging
 
     params_array = np.array(estimated_params)
 

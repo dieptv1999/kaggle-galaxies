@@ -7,7 +7,7 @@ from theano.tensor.nnet.conv import conv2d
 from theano.sandbox.rng_mrg import MRG_RandomStreams as RandomStreams
 import sys
 import os
-import cPickle as pickle
+import pickle
 
 
 srng = RandomStreams()
@@ -948,7 +948,7 @@ class ResponseNormalisationLayer(object):
         sq = T.set_subtensor(extra_channels[:,half:half+ch,:,:], sq)
         scale = self.k
 
-        for i in xrange(self.n):
+        for i in range(self.n):
             scale += self.alpha * sq[:,i:i+ch,:,:]
 
         scale = scale ** self.beta
@@ -1055,9 +1055,9 @@ class StridedConv2DLayer(object):
 
 
             inputs_x = []
-            for num_x in xrange(num_steps_x):
+            for num_x in range(num_steps_x):
                 inputs_y = []
-                for num_y in xrange(num_steps_y):
+                for num_y in range(num_steps_y):
                     shift_x = num_x * self.stride_x # pixel shift in the x direction
                     shift_y = num_y * self.stride_y # pixel shift in the y direction
 
@@ -1093,8 +1093,8 @@ class StridedConv2DLayer(object):
 
             conved = T.zeros(output_shape)
 
-            for num_x in xrange(num_steps_x):
-                for num_y in xrange(num_steps_y):
+            for num_x in range(num_steps_x):
+                for num_y in range(num_steps_y):
                     shift_x = num_x * self.stride_x # pixel shift in the x direction
                     shift_y = num_y * self.stride_y # pixel shift in the y direction
 
@@ -1306,7 +1306,7 @@ def sparse_initialisation(n_inputs, n_outputs, sparsity=0.05, std=0.01):
     """
     weights = np.zeros((n_inputs, n_outputs), dtype='float32')
     size = int(sparsity * n_inputs)
-    for k in xrange(n_outputs):
+    for k in range(n_outputs):
         indices = np.arange(n_inputs)
         np.random.shuffle(indices)
         indices = indices[:size]
@@ -1367,7 +1367,7 @@ class FeatureMaxPoolingLayer_old(object):
         indices = [slice(None)] * input.ndim # select everything
 
         output = None
-        for k in xrange(self.pool_size):
+        for k in range(self.pool_size):
             indices[self.feature_dim] = slice(k, None, self.stride) # narrow down the selection for the feature dim
             m = input[tuple(indices)]
             if output is None:
